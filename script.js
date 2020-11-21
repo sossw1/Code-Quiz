@@ -31,6 +31,10 @@ var nextQuestion = function () {
         $("body").append(`<section id='q${qNum}'>`);
         var questionEl = $(`#q${qNum}`);
         questionEl.append(`<h2>Question ${qNum+1}: ${questions[qNum].q}`);
+        for(let i=0; i<4; i++){
+            let options = ["a","b","c","d"];
+            questionEl.append(`<button id='${options[i]}'>${options[i]}: ${questions[qNum][options[i]]}`);
+        }
     }
     else{
         //end quiz and display high scores
