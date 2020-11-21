@@ -58,6 +58,7 @@ var nextQuestion = function () {
                 }
                 else {
                     questionEl.append("<p>Incorrect!");
+                    timeRemaining -= 10;
                 }
                 setTimeout(function(){
                     questionEl[0].style.display = "none";
