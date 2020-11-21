@@ -46,6 +46,6 @@ introSectionEl.append("<p>Try your best to finish the following code-related que
 introSectionEl.append("<button id='start-btn'>Start Quiz!");
 
 $("#start-btn").on("click",function(){
-    introSectionEl[0].style.visibility = "hidden";
+    introSectionEl[0].style.display = "none";
     nextQuestion();
 });
