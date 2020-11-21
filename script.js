@@ -28,7 +28,7 @@ var qNum = 0;
 
 var nextQuestion = function () {
     if(qNum<questions.length){
-        $("body").append(`<section id='q${qNum}'>`);
+        $("body").append(`<section id='q${qNum}' class='question'>`);
         var questionEl = $(`#q${qNum}`);
         questionEl.append(`<h2>Question ${qNum+1}: ${questions[qNum].q}`);
         for(let i=0; i<4; i++){
