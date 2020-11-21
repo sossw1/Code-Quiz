@@ -1,4 +1,4 @@
-//Initialize variables
+// Initialize variables
 var q1 = {
     q: "question",
     a: "incorrect",
@@ -35,7 +35,7 @@ var startTimer = function () {
         $("#timer").html(`Time: ${timeRemaining}`);
         if(timeRemaining === 0) {
             clearInterval(timerInterval);
-            if(qNum<3){
+            if(qNum<questions.length){
                 highScores();
             }
         }
@@ -78,19 +78,28 @@ var nextQuestion = function () {
 }
 
 var highScores = function () {
-    //Use this score for highscores
+    // Use this score for highscores
     var score = timeRemaining;
     if(score<0){score=0;}
-    
+
     var sect = $("section");
     for(let i=0; i<sect.length; i++){
         sect[i].style.display = "none";
     }
     var timerEl = $("#timer");
     timerEl[0].style.display = "none";
-    $("body").append("<section>");
-    $("section").append("<h2>High Scores");
-    $("section").append("<p>Test");
+    $("body").append("<section id='high-scores'>");
+    $("#high-scores").append("<h2>High Scores");
+    $("#high-scores").append("<form>")
+    $("form").append("<label for='name'>Enter your name");
+    $("form").append("<br>")
+    $("form").append("<input type='text' id='name' name ='name' maxlength='3'>");
+    //Listen for submit
+    $("form").submit(function(event){
+        event.preventDefault();
+        var name = $("#name")[0].value;
+    })
+
 }
 
 $("body").append("<nav>");
