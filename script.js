@@ -28,4 +28,4 @@ var q3 = {
 $("body").append("<nav>");
 $("nav").append("<a href=''>View High Scores");
 $("nav").append(`<p>Time: ${timeRemaining}</p>`);
-$("body").append("<section>");
+$("body").append(`<section>${introText}`);
