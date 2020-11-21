@@ -34,6 +34,7 @@ var nextQuestion = function () {
         for(let i=0; i<4; i++){
             let options = ["a","b","c","d"];
             questionEl.append(`<button id='${options[i]}'>${options[i]}: ${questions[qNum][options[i]]}`);
+            questionEl.append("<br>");
         }
     }
     else{
