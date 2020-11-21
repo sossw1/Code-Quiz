@@ -33,4 +33,8 @@ $("body").append(`<section id="intro-section">`);
 var introSectionEl = $("#intro-section");
 introSectionEl.append("<h1>Code Quiz Challenge");
 introSectionEl.append("<p>Try your best to finish the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds!");
+introSectionEl.append("<button id='start-btn'>Start Quiz!");
 
+$("#start-btn").on("click",function(){
+    introSectionEl[0].style.visibility = "hidden";
+});
