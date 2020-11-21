@@ -26,6 +26,16 @@ var q3 = {
 var questions = [q1, q2, q3];
 var qNum = 0;
 
+var nextQuestion = function () {
+    if(qNum<questions.length){
+        $("body").append(`<section id='q${qNum}'>`);
+        var questionEl = $(`q${qNum}`);
+    }
+    else{
+        //end quiz and display high scores
+    }
+}
+
 $("body").append("<nav>");
 $("nav").append("<a href=''>View High Scores");
 $("nav").append(`<p>Time: ${timeRemaining}</p>`);
@@ -37,4 +47,5 @@ introSectionEl.append("<button id='start-btn'>Start Quiz!");
 
 $("#start-btn").on("click",function(){
     introSectionEl[0].style.visibility = "hidden";
+    nextQuestion();
 });
