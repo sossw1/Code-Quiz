@@ -24,7 +24,7 @@ var q3 = {
 }
 var questions = [q1, q2, q3];
 var qNum = 0;
-var timeRemaining = 100;
+var timeRemaining = 30;
 var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
 
 
@@ -35,7 +35,9 @@ var startTimer = function () {
         $("#timer").html(`Time: ${timeRemaining}`);
         if(timeRemaining === 0) {
             clearInterval(timerInterval);
-            highScores();
+            if(qNum<3){
+                highScores();
+            }
         }
     },1000);
 }
@@ -76,15 +78,19 @@ var nextQuestion = function () {
 }
 
 var highScores = function () {
+    //Use this score for highscores
     var score = timeRemaining;
-    console.log(score);
+    if(score<0){score=0;}
+    
     var sect = $("section");
-    sect[0].style.display = "none";
+    for(let i=0; i<sect.length; i++){
+        sect[i].style.display = "none";
+    }
     var timerEl = $("#timer");
     timerEl[0].style.display = "none";
     $("body").append("<section>");
     $("section").append("<h2>High Scores");
-    $("h2").append("<p>Test");
+    $("section").append("<p>Test");
 }
 
 $("body").append("<nav>");
