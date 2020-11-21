@@ -1,5 +1,4 @@
 //Initialize variables
-var timeRemaining = undefined;
 var q1 = {
     q: "question",
     a: "incorrect",
@@ -25,15 +24,18 @@ var q3 = {
 }
 var questions = [q1, q2, q3];
 var qNum = 0;
+var timeRemaining = 100;
+var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
+
 
 var startTimer = function () {
-    timeRemaining = 100;
-    var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
     $("nav").append(timerEl);
-    setInterval(function(){
-        if(timeRemaining !== 0){
-            timeRemaining--;
-            $("#timer").html(`Time: ${timeRemaining}`);
+    var timerInterval = setInterval(function(){
+        timeRemaining--;
+        $("#timer").html(`Time: ${timeRemaining}`);
+        if(timeRemaining === 0) {
+            clearInterval(timerInterval);
+            highScores();
         }
     },1000);
 }
@@ -69,8 +71,20 @@ var nextQuestion = function () {
         }
     }
     else{
-        //end quiz and display high scores
+        highScores();
     }
+}
+
+var highScores = function () {
+    var score = timeRemaining;
+    console.log(score);
+    var sect = $("section");
+    sect[0].style.display = "none";
+    var timerEl = $("#timer");
+    timerEl[0].style.display = "none";
+    $("body").append("<section>");
+    $("section").append("<h2>High Scores");
+    $("h2").append("<p>Test");
 }
 
 $("body").append("<nav>");
