@@ -26,10 +26,10 @@ var questions = [q1, q2, q3];
 var qNum = 0;
 var timeRemaining = 30;
 var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
-var highScoresNames = [];
-var highScoresArray = [];
+var highScoresNames = JSON.parse(localStorage.getItem("names"));
+var highScoresArray = JSON.parse(localStorage.getItem("scores"));
 var name = "";
-
+var score = 0;
 
 var startTimer = function () {
     $("nav").append(timerEl);
@@ -82,7 +82,7 @@ var nextQuestion = function () {
 
 var highScores = function () {
     // Use this score for highscores
-    var score = timeRemaining;
+    score = timeRemaining;
     if(score<0){score=0;}
     var sect = $("section");
     for(let i=0; i<sect.length; i++){
@@ -96,28 +96,36 @@ var highScores = function () {
     $("form").append("<label for='name'>Enter your name");
     $("form").append("<br>")
     $("form").append("<input type='text' id='name' name ='name' maxlength='3'>");
-    $("#high-scores").append("<button id='restart'");
     //Listen for submit
     $("form").submit(function(event){
         event.preventDefault();
         name = $("#name")[0].value;
         $("form")[0].style.display = "none";
-        sortHighScores();
+        updateHighScores();
         displayHighScores();
     });
 }
 
-var sortHighScores = function() {
-    var place = 0;
-    highScoresArray.forEach(element1 => {
-        highScoresArray.forEach(element2 => {
-            if(element1>element2){place++}
-        });
-    });
+var updateHighScores = function() {
+    highScoresNames.push(name);
+    highScoresArray.push(score);
+    var strNames = JSON.stringify(highScoresNames);
+    var strScores = JSON.stringify(highScoresArray);
+    localStorage.setItem("names",strNames);
+    localStorage.setItem("scores",strScores);
 }
 
 var displayHighScores = function() {
-
+    var strNames = localStorage.getItem("names");
+    var strScores = localStorage.getItem("scores");
+    var namesArray = JSON.parse(strNames);
+    var scoresArray = JSON.parse(strScores);
+    namesArray.forEach(element => {
+        console.log(element);
+    });
+    scoresArray.forEach(element => {
+        console.log(element);
+    });
 }
 
 $("body").append("<nav>");
