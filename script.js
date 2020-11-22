@@ -27,13 +27,13 @@ var answerKey = ["b","a","d"];
 var qNum = 0;
 var timeRemaining = 30;
 var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
-var highScoresNames = [];
-var highScoresArray = [];
+var namesArray = [];
+var scoresArray = [];
 var strHighScoresNames = localStorage.getItem("names");
 var strHighScoresArray = localStorage.getItem("scores");
 if(strHighScoresNames !== ""){
-    highScoresNames = JSON.parse(strHighScoresNames);
-    highScoresArray = JSON.parse(strHighScoresArray);
+    namesArray = JSON.parse(strHighScoresNames);
+    scoresArray = JSON.parse(strHighScoresArray);
 }
 var name = "";
 var score = 0;
@@ -115,10 +115,10 @@ var highScores = function () {
 }
 
 var updateHighScores = function() {
-    highScoresNames.push(name);
-    highScoresArray.push(score);
-    var strNames = JSON.stringify(highScoresNames);
-    var strScores = JSON.stringify(highScoresArray);
+    namesArray.push(name);
+    scoresArray.push(score);
+    var strNames = JSON.stringify(namesArray);
+    var strScores = JSON.stringify(scoresArray);
     localStorage.setItem("names",strNames);
     localStorage.setItem("scores",strScores);
 }
@@ -130,10 +130,7 @@ var displayHighScores = function() {
     }
     $("body").append("<section>");
     $("section").append("<h2>High Scores");
-    var strNames = localStorage.getItem("names");
-    var strScores = localStorage.getItem("scores");
-    var namesArray = JSON.parse(strNames);
-    var scoresArray = JSON.parse(strScores);
+    
     for(let i=0; i<namesArray.length; i++){
         $("section").append("<hr>");
         $("section").append(`<p>${namesArray[i]} - ${scoresArray[i]}`);
