@@ -31,8 +31,10 @@ var highScoresNames = [];
 var highScoresArray = [];
 var strHighScoresNames = localStorage.getItem("names");
 var strHighScoresArray = localStorage.getItem("scores");
-highScoresNames = JSON.parse(strHighScoresNames);
-highScoresArray = JSON.parse(strHighScoresArray);
+if(strHighScoresNames !== ""){
+    highScoresNames = JSON.parse(strHighScoresNames);
+    highScoresArray = JSON.parse(strHighScoresArray);
+}
 var name = "";
 var score = 0;
 
