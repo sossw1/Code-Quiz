@@ -1,28 +1,29 @@
 // Initialize variables
 var q1 = {
-    q: "question",
-    a: "incorrect",
-    b: "correct",
-    c: "incorrect",
-    d: "incorrect"
+    q: "Who created JavaScript?",
+    a: "Sun Microsystems",
+    b: "Netscape",
+    c: "Oracle",
+    d: "Microsoft"
 }
 
 var q2 = {
-    q: "question",
-    a: "correct",
-    b: "incorrect",
-    c: "incorrect",
-    d: "incorrect"
+    q: "What are other names that JavaScript used to go by?",
+    a: "Mocha",
+    b: "Latte",
+    c: "Java",
+    d: "Caffe"
 }
 
 var q3 = {
-    q: "question",
-    a: "incorrect",
-    b: "incorrect",
-    c: "incorrect",
-    d: "correct"
+    q: "Which of the following is not a reserved word in JavaScript?",
+    a: "finally",
+    b: "throw",
+    c: "default",
+    d: "undefined"
 }
 var questions = [q1, q2, q3];
+var answerKey = ["b","a","d"];
 var qNum = 0;
 var timeRemaining = 30;
 var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
@@ -60,7 +61,8 @@ var nextQuestion = function () {
             questionEl.append("<br>");
             btn.on("click", function(event){
                 var answerChoice = event.target.id;
-                if(questions[qNum][answerChoice] === "correct"){
+                console.log(answerChoice);
+                if(answerKey[qNum] === answerChoice){
                     questionEl.append("<p>Correct!");
                 }
                 else {
