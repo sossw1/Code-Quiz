@@ -116,18 +116,24 @@ var updateHighScores = function() {
 }
 
 var displayHighScores = function() {
+    var sect = $("section");
+    for(let i=0; i<sect.length; i++){
+        sect[i].style.display = "none";
+    }
+    $("body").append("<section>");
+    $("section").append("<h2>High Scores");
     var strNames = localStorage.getItem("names");
     var strScores = localStorage.getItem("scores");
     var namesArray = JSON.parse(strNames);
     var scoresArray = JSON.parse(strScores);
     for(let i=0; i<namesArray.length; i++){
-        $("#high-scores").append("<hr>");
-        $("#high-scores").append(`<p>${namesArray[i]} - ${scoresArray[i]}`);
+        $("section").append("<hr>");
+        $("section").append(`<p>${namesArray[i]} - ${scoresArray[i]}`);
     }
 }
 
 $("body").append("<nav>");
-$("nav").append("<a href=''>View High Scores");
+$("nav").append("<button id='view-highscores'>View High Scores");
 $("body").append(`<section id="intro-section">`);
 var introSectionEl = $("#intro-section");
 introSectionEl.append("<h1>Code Quiz Challenge");
@@ -140,3 +146,4 @@ $("#start-btn").on("click",function(){
     nextQuestion();
 });
 
+$("#view-highscores").on("click", displayHighScores);
