@@ -128,6 +128,8 @@ var displayHighScores = function() {
     $("section").append("<h2>High Scores");
     var strNames = localStorage.getItem("names");
     var strScores = localStorage.getItem("scores");
+    console.log(strNames);
+    console.log(strScores);
     var namesArray = JSON.parse(strNames);
     var scoresArray = JSON.parse(strScores);
     for(let i=0; i<namesArray.length; i++){
