@@ -27,10 +27,12 @@ var answerKey = ["b","a","d"];
 var qNum = 0;
 var timeRemaining = 30;
 var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
+var highScoresNames = [];
+var highScoresArray = [];
 var strHighScoresNames = localStorage.getItem("names");
 var strHighScoresArray = localStorage.getItem("scores");
-var highScoresNames = JSON.parse(strHighScoresNames);
-var highScoresArray = JSON.parse(strHighScoresArray);
+highScoresNames = JSON.parse(strHighScoresNames);
+highScoresArray = JSON.parse(strHighScoresArray);
 var name = "";
 var score = 0;
 
