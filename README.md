@@ -8,6 +8,16 @@ This repository is useful for testing new trivia and basic JavaScript knowledge 
 
 # Links
 
-* [Deployed Site]()
+* [Deployed Site](https://sossw1.github.io/Code-Quiz/)
 
-* [Repository]()
+* [Repository](https://github.com/sossw1/Code-Quiz)
+
+# Screenshots
+
+![Screenshot 1](/assets/screenshot1.png)
+
+![Screenshot 2](/assets/screenshot2.png)
+
+![Screenshot 3](/assets/screenshot3.png)
+
+![Screenshot 4](/assets/screenshot4.png)
