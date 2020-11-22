@@ -26,6 +26,9 @@ var questions = [q1, q2, q3];
 var qNum = 0;
 var timeRemaining = 30;
 var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
+var highScoresNames = [];
+var highScoresArray = [];
+var name = "";
 
 
 var startTimer = function () {
@@ -81,7 +84,6 @@ var highScores = function () {
     // Use this score for highscores
     var score = timeRemaining;
     if(score<0){score=0;}
-
     var sect = $("section");
     for(let i=0; i<sect.length; i++){
         sect[i].style.display = "none";
@@ -94,11 +96,27 @@ var highScores = function () {
     $("form").append("<label for='name'>Enter your name");
     $("form").append("<br>")
     $("form").append("<input type='text' id='name' name ='name' maxlength='3'>");
+    $("#high-scores").append("<button id='restart'");
     //Listen for submit
     $("form").submit(function(event){
         event.preventDefault();
-        var name = $("#name")[0].value;
-    })
+        name = $("#name")[0].value;
+        $("form")[0].style.display = "none";
+        sortHighScores();
+        displayHighScores();
+    });
+}
+
+var sortHighScores = function() {
+    var place = 0;
+    highScoresArray.forEach(element1 => {
+        highScoresArray.forEach(element2 => {
+            if(element1>element2){place++}
+        });
+    });
+}
+
+var displayHighScores = function() {
 
 }
 
