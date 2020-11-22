@@ -120,12 +120,10 @@ var displayHighScores = function() {
     var strScores = localStorage.getItem("scores");
     var namesArray = JSON.parse(strNames);
     var scoresArray = JSON.parse(strScores);
-    namesArray.forEach(element => {
-        console.log(element);
-    });
-    scoresArray.forEach(element => {
-        console.log(element);
-    });
+    for(let i=0; i<namesArray.length; i++){
+        $("#high-scores").append("<hr>");
+        $("#high-scores").append(`<p>${namesArray[i]} - ${scoresArray[i]}`);
+    }
 }
 
 $("body").append("<nav>");
