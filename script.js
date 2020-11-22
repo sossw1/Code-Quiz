@@ -27,10 +27,10 @@ var answerKey = ["b","a","d"];
 var qNum = 0;
 var timeRemaining = 30;
 var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
-var highScoresNames = [];
-var highScoresArray = [];
-highScoresNames = JSON.parse(localStorage.getItem("names"));
-highScoresArray = JSON.parse(localStorage.getItem("scores"));
+var strHighScoresNames = localStorage.getItem("names");
+var strHighScoresArray = localStorage.getItem("scores");
+var highScoresNames = JSON.parse(strHighScoresNames);
+var highScoresArray = JSON.parse(strHighScoresArray);
 var name = "";
 var score = 0;
 
@@ -128,8 +128,6 @@ var displayHighScores = function() {
     $("section").append("<h2>High Scores");
     var strNames = localStorage.getItem("names");
     var strScores = localStorage.getItem("scores");
-    console.log(strNames);
-    console.log(strScores);
     var namesArray = JSON.parse(strNames);
     var scoresArray = JSON.parse(strScores);
     for(let i=0; i<namesArray.length; i++){
