@@ -152,8 +152,10 @@ var displayHighScores = function() {
     $("section").append("<h2>High Scores");
     
     for(let i=0; i<arrLocalScores.length; i++){
-        $("section").append("<hr>");
-        $("section").append(`<p>${arrLocalNames[i]} - ${arrLocalScores[i]}`);
+        if(arrLocalNames[i] !== "" && arrLocalScores !== 0){
+            $("section").append("<hr>");
+            $("section").append(`<p>${arrLocalNames[i]} - ${arrLocalScores[i]}`);
+        }
     }
 }
 
