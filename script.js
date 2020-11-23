@@ -27,16 +27,12 @@ var answerKey = ["b","a","d"];
 var qNum = 0;
 var timeRemaining = 30;
 var timerEl = `<p id='timer'>Time: ${timeRemaining}</p>`;
-var namesArray = [];
-var scoresArray = [];
-var strHighScoresNames = localStorage.getItem("names");
-var strHighScoresArray = localStorage.getItem("scores");
-if(strHighScoresNames !== ""){
-    namesArray = JSON.parse(strHighScoresNames);
-    scoresArray = JSON.parse(strHighScoresArray);
-}
 var name = "";
 var score = 0;
+var arrLocalNames = [];
+var arrLocalScores = [];
+var updateBool = false;
+
 
 var startTimer = function () {
     $("nav").append(timerEl);
@@ -108,6 +104,7 @@ var highScores = function () {
     $("form").submit(function(event){
         event.preventDefault();
         name = $("#name")[0].value;
+        updateBool = true;
         $("form")[0].style.display = "none";
         updateHighScores();
         displayHighScores();
@@ -115,16 +112,35 @@ var highScores = function () {
 }
 
 var updateHighScores = function() {
-    if (namesArray.length === 0) {
-        namesArray[0] = name; 
-    } else {  namesArray.push(name);}
-    if (scoresArray.length === 0) {
-        scoresArray[0] = score; 
-    } else {  scoresArray.push(score);}
-    var strNames = JSON.stringify(namesArray);
-    var strScores = JSON.stringify(scoresArray);
-    localStorage.setItem("names",strNames);
-    localStorage.setItem("scores",strScores);
+    //Update high scores only for new records
+
+    //Get names and scores strings from localStorage
+    var strLocalNames = localStorage.getItem("names");
+    var strLocalScores = localStorage.getItem("scores");
+    //Add current name and score and set localStorage items
+    if(strLocalNames === null) {
+        arrLocalNames.push(name);
+        var str = JSON.stringify(arrLocalNames);
+        localStorage.setItem("names",str);
+    }
+    else {
+        arrLocalNames = JSON.parse(strLocalNames);
+        arrLocalNames.push(name);
+        var str = JSON.stringify(arrLocalNames);
+        localStorage.setItem("names",str);
+    }
+
+    if(strLocalScores === null) {
+        arrLocalScores.push(score);
+        var str = JSON.stringify(arrLocalScores);
+        localStorage.setItem("scores",str);
+    }
+    else {
+        arrLocalScores = JSON.parse(strLocalScores);
+        arrLocalScores.push(score);
+        var str = JSON.stringify(arrLocalScores);
+        localStorage.setItem("scores",str);
+    }
 }
 
 var displayHighScores = function() {
@@ -135,9 +151,9 @@ var displayHighScores = function() {
     $("body").append("<section>");
     $("section").append("<h2>High Scores");
     
-    for(let i=0; i<namesArray.length; i++){
+    for(let i=0; i<arrLocalScores.length; i++){
         $("section").append("<hr>");
-        $("section").append(`<p>${namesArray[i]} - ${scoresArray[i]}`);
+        $("section").append(`<p>${arrLocalNames[i]} - ${arrLocalScores[i]}`);
     }
 }
 
@@ -156,4 +172,7 @@ $("#start-btn").on("click",function(){
     nextQuestion();
 });
 
-$("#view-highscores").on("click", displayHighScores);
+$("#view-highscores").on("click", function(){
+    updateHighScores();
+    displayHighScores();
+});
