@@ -115,8 +115,12 @@ var highScores = function () {
 }
 
 var updateHighScores = function() {
-    namesArray.push(name);
-    scoresArray.push(score);
+    if (namesArray.length === 0) {
+        namesArray[0] = name; 
+    } else {  namesArray.push(name);}
+    if (scoresArray.length === 0) {
+        scoresArray[0] = score; 
+    } else {  scoresArray.push(score);}
     var strNames = JSON.stringify(namesArray);
     var strScores = JSON.stringify(scoresArray);
     localStorage.setItem("names",strNames);
